@@ -15,6 +15,10 @@ if "-h" == args[0]:
         specify the date you want to track for bus tickets
     -s 
         silent mode: the noise will not play when a ticket get found
+    --dest=<dest_code>
+        specify destination code
+    --orig=<orig_code>
+        specify origin code
             """)
 else:
 
@@ -35,13 +39,22 @@ else:
         elif arg == "-s":
             SILENT = True
 
+        elif "--dest" in arg:
+            dest_code = arg.split("=")[1]
 
-    req = f"https://safar724.com/bus/getservices?origin=11320000&destination=95310000&date={year}%2F{month}%2F{day}"
+        elif "--orig" in arg:
+            orig_code = arg.split("=")[1]
+
+
+    req = f"https://safar724.com/bus/getservices?origin={orig_code}&destination={dest_code}&date={year}%2F{month}%2F{day}"
 
     try:
         res = requests.get(req)
+        if res.status_code != 200:
+            raise ValueError("")
     except Exception as e:
         print("something went wrong")
+        print("it's whether the orig and dest codes or your connection")
         if not SILENT:
             playsound("beep-09.mp3")
 
