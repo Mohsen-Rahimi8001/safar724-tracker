@@ -15,4 +15,4 @@ if you have a linux distro, you can use this command:
 
 ### search for bus
 
-```https://safar724.com/bus/getservices?origin=<origin_code>&destination=<dest_code>&date=<data>```
+```https://safar724.com/bus/getservices?origin=<origin_code>&destination=<dest_code>&date=<date>```
